@@ -1,0 +1,706 @@
+/* ==================== Global Styles ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== Navbar ==================== */
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.nav-logo {
+    height: 40px;
+}
+
+.logo-link img {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+}
+
+/* Feature rotator in navbar */
+.feature-rotator {
+    color: #ffffffcc;
+    font-weight: 600;
+    margin-left: 1rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+    font-size: 0.98rem;
+    min-width: 160px;
+    text-align: center;
+}
+.feature-rotator .inner { display:inline-block; transition: opacity 0.4s ease; }
+.feature-rotator.hidden .inner { opacity: 0; }
+
+/* ==================== Cards and Sections ==================== */
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+.card h3 {
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================== Greeting Section ==================== */
+
+.greeting-section {
+    margin-top: 2rem;
+}
+
+/* Hero layout for home page */
+.hero-inner {
+    display:flex;
+    gap:1rem;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.hero-media { flex:1 1 420px; }
+.hero-body { flex:1 1 320px; }
+.hero-video iframe { width:100%; max-width:420px; border-radius:8px; }
+@media (max-width:720px) {
+  .hero-video iframe { height:240px; }
+}
+
+.greeting-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.greeting-card h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: none;
+}
+
+.greeting-card p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* ==================== Forms ==================== */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input[type="text"].error,
+input[type="email"].error,
+input[type="number"].error,
+select.error {
+    border-color: #e74c3c;
+    background-color: #fadbd8;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+.unit-select {
+    width: 100px;
+}
+
+/* ==================== Error Messages ==================== */
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    font-weight: 500;
+    min-height: 20px;
+    display: block;
+}
+
+/* ==================== Buttons ==================== */
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5568d3;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* ==================== Result Display ==================== */
+
+.result-display {
+    background-color: #f8f9fa;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.result-display h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: none;
+}
+
+.bmi-value,
+.calorie-value {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #667eea;
+    margin: 1rem 0;
+}
+
+.bmi-value::after,
+.calorie-value::after {
+    content: '';
+}
+
+.unit {
+    font-size: 1rem;
+    color: #666;
+    font-weight: normal;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+/* ==================== BMI Category Colors ==================== */
+
+.bmi-category {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.bmi-underweight {
+    background-color: #3498db;
+    color: white;
+}
+
+.bmi-normal {
+    background-color: #27ae60;
+    color: white;
+}
+
+.bmi-overweight {
+    background-color: #f39c12;
+    color: white;
+}
+
+.bmi-obese {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* ==================== Toast Notifications ==================== */
+
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 300px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.toast.exit {
+    animation: slideOut 0.3s ease;
+}
+
+.toast-success {
+    border-left: 5px solid #27ae60;
+}
+
+.toast-success::before {
+    content: '✓';
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.toast-error {
+    border-left: 5px solid #e74c3c;
+}
+
+.toast-error::before {
+    content: '✕';
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.toast-info {
+    border-left: 5px solid #3498db;
+}
+
+.toast-info::before {
+    content: 'ℹ';
+    color: #3498db;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.toast-message {
+    flex: 1;
+    color: #333;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.toast-close:hover {
+    color: #333;
+}
+
+/* ==================== Confirmation Dialog ==================== */
+
+.confirmation-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.dialog-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.dialog-content h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: none;
+}
+
+.dialog-content p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.dialog-buttons .btn {
+    flex: 1;
+}
+
+/* ==================== Responsive Design ==================== */
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .greeting-card {
+        padding: 2rem 1rem;
+    }
+
+    .greeting-card h2 {
+        font-size: 2rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .unit-select {
+        width: 100%;
+    }
+
+    .toast-container {
+        left: 20px;
+        right: 20px;
+    }
+
+    .toast {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .dialog-content {
+        width: 95%;
+    }
+
+    .dialog-buttons {
+        flex-direction: column;
+    }
+
+    .dialog-buttons .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .greeting-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .bmi-value,
+    .calorie-value {
+        font-size: 2rem;
+    }
+
+    .result-display {
+        padding: 1rem;
+    }
+
+    .form-group {
+        gap: 0.3rem;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
+
+    input,
+    select {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== New Feature Styles ==================== */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.card-item {
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.progress-wrapper {
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 18px;
+    background: #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #dfe6fb;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #27ae60, #f1c40f);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+.water-wrapper {
+    display:flex;
+    flex-direction:column;
+    gap:0.8rem;
+}
+
+.water-controls {
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+}
+
+.activity-list {
+    margin-top: 1rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+}
+
+.activity-item {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0.6rem 0.8rem;
+    background:#f7f9fc;
+    border-radius:8px;
+    border:1px solid #eef2ff;
+}
+
+.activity-main strong {
+    display:block;
+    font-size:1rem;
+}
+
+.activity-main span {
+    color:#666;
+    font-size:0.9rem;
+}
+
+.sleep-history {
+    margin-top:1rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+}
+
+.sleep-item {
+    padding:0.5rem 0.8rem;
+    background:#f6fbf8;
+    border-radius:6px;
+    border:1px solid #e6f7ee;
+}
+
+@media (max-width: 900px) {
+    .card-grid { grid-template-columns: 1fr; }
+}

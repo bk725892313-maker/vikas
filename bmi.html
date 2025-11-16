@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - FitTrack Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-link"><img src="assets/logo.svg" alt="FitTrack Pro" class="nav-logo" /></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="bmi.html">BMI Calculator</a></li>
+                <li><a href="calorie.html">Calorie Tracker</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="activity.html">Activity Log</a></li>
+                <li><a href="sleep.html">Sleep Tracker</a></li>
+                <li><button class="btn btn-secondary" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="bmi" class="bmi-section">
+            <div class="card">
+                <h2>BMI Calculator</h2>
+                <form id="bmiForm" class="form">
+                    <div class="form-group">
+                        <label for="bmiHeight">Height:</label>
+                        <div class="input-group">
+                            <input type="number" id="bmiHeight" name="bmiHeight" placeholder="Enter height" min="1" required>
+                            <select id="heightUnit" name="heightUnit" class="unit-select">
+                                <option value="cm">cm</option>
+                                <option value="inches">inches</option>
+                            </select>
+                        </div>
+                        <span class="error-message" id="bmiHeightError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bmiWeight">Weight:</label>
+                        <div class="input-group">
+                            <input type="number" id="bmiWeight" name="bmiWeight" placeholder="Enter weight" min="1" step="0.1" required>
+                            <select id="weightUnit" name="weightUnit" class="unit-select">
+                                <option value="kg">kg</option>
+                                <option value="lbs">lbs</option>
+                            </select>
+                        </div>
+                        <span class="error-message" id="bmiWeightError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="bmiSubmitBtn">Calculate BMI</button>
+                </form>
+
+                <div id="bmiResult" class="result-display" style="display: none;">
+                    <h3>Your BMI Result</h3>
+                    <div class="bmi-value">
+                        <span id="bmiValue">0.0</span>
+                    </div>
+                    <div id="bmiCategory" class="bmi-category"></div>
+                    <p id="bmiInterpretation"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <div id="confirmationDialog" class="confirmation-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h3 id="dialogTitle">Confirm Action</h3>
+            <p id="dialogMessage">Are you sure?</p>
+            <div class="dialog-buttons">
+                <button class="btn btn-primary" id="confirmBtn">Confirm</button>
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

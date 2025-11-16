@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Tracker - FitTrack Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-link"><img src="assets/logo.svg" alt="FitTrack Pro" class="nav-logo" /></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="bmi.html">BMI Calculator</a></li>
+                <li><a href="calorie.html">Calorie Tracker</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="activity.html">Activity Log</a></li>
+                <li><a href="sleep.html">Sleep Tracker</a></li>
+                <li><button class="btn btn-secondary" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="calorie" class="calorie-section">
+            <div class="card">
+                <h2>Daily Calorie Needs Calculator</h2>
+                <form id="calorieForm" class="form">
+                    <div class="form-group">
+                        <label for="calorieAge">Age (years):</label>
+                        <input type="number" id="calorieAge" name="calorieAge" placeholder="Enter age" min="1" max="120" required>
+                        <span class="error-message" id="calorieAgeError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calorieGender">Gender:</label>
+                        <select id="calorieGender" name="calorieGender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <span class="error-message" id="calorieGenderError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calorieWeight">Weight (kg):</label>
+                        <input type="number" id="calorieWeight" name="calorieWeight" placeholder="Enter weight" min="1" step="0.1" required>
+                        <span class="error-message" id="calorieWeightError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calorieHeight">Height (cm):</label>
+                        <input type="number" id="calorieHeight" name="calorieHeight" placeholder="Enter height" min="1" required>
+                        <span class="error-message" id="calorieHeightError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activityLevel">Activity Level:</label>
+                        <select id="activityLevel" name="activityLevel" required>
+                            <option value="">Select activity level</option>
+                            <option value="sedentary">Sedentary (little or no exercise)</option>
+                            <option value="light">Light (exercise 1-3 days/week)</option>
+                            <option value="moderate">Moderate (exercise 3-5 days/week)</option>
+                            <option value="active">Active (exercise 6-7 days/week)</option>
+                            <option value="veryactive">Very Active (intense exercise 6-7 days/week)</option>
+                        </select>
+                        <span class="error-message" id="activityLevelError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="calorieSubmitBtn">Calculate Calorie Needs</button>
+                </form>
+
+                <div id="calorieResult" class="result-display" style="display: none;">
+                    <h3>Your Daily Calorie Needs</h3>
+                    <div class="calorie-value">
+                        <span id="calorieValue">0</span>
+                        <span class="unit">kcal/day</span>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="calorieGoal">Set Your Calorie Goal (kcal/day):</label>
+                        <input type="number" id="calorieGoal" name="calorieGoal" placeholder="Enter your calorie goal" min="1">
+                        <button type="button" class="btn btn-secondary" id="setGoalBtn">Set Goal</button>
+                    </div>
+                    <p id="goalMessage" style="margin-top: 10px;"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <div id="confirmationDialog" class="confirmation-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h3 id="dialogTitle">Confirm Action</h3>
+            <p id="dialogMessage">Are you sure?</p>
+            <div class="dialog-buttons">
+                <button class="btn btn-primary" id="confirmBtn">Confirm</button>
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

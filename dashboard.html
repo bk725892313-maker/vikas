@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FitTrack Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-link"><img src="assets/logo.svg" alt="FitTrack Pro" class="nav-logo" /></a>
+            <div style="display:flex;align-items:center;gap:1rem;">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="calorie.html">Calorie Tracker</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="activity.html">Activity Log</a></li>
+                    <li><a href="sleep.html">Sleep Tracker</a></li>
+                    <li><button class="btn btn-secondary" id="logoutBtn">Logout</button></li>
+                </ul>
+                <div id="featureRotator" class="feature-rotator" aria-live="polite"><span class="inner">BMI Calculator</span></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="progress" class="progress-section">
+            <div class="card">
+                <h2>Progress Dashboard</h2>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <h3>Calorie Goal Progress</h3>
+                        <div class="progress-wrapper">
+                            <div class="progress-bar" id="calorieProgressBar">
+                                <div class="progress-fill" id="calorieProgressFill" style="width: 0%;"></div>
+                            </div>
+                            <p id="calorieProgressText">0 / 0 kcal</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addIntake">Log Calories Consumed (kcal):</label>
+                            <div class="input-group">
+                                <input type="number" id="addIntake" min="0" placeholder="e.g. 500">
+                                <button class="btn btn-primary" id="logIntakeBtn">Add</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" id="resetIntakeBtn">Reset Today's Intake</button>
+                    </div>
+
+                    <div class="card-item">
+                        <h3>Water Intake</h3>
+                        <div class="water-wrapper">
+                            <p id="waterText">0 / 8 cups</p>
+                            <div class="water-controls">
+                                <button class="btn btn-primary" id="addCupBtn">+ Cup</button>
+                                <button class="btn btn-secondary" id="removeCupBtn">- Cup</button>
+                                <button class="btn btn-secondary" id="resetWaterBtn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" style="margin-top:1.5rem;">
+            <div class="card">
+                <h3>Quick Links</h3>
+                <p>Open dedicated pages to log activities or sleep records:</p>
+                <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1rem;">
+                    <a class="btn btn-primary" href="activity.html">Open Activity Log</a>
+                    <a class="btn btn-primary" href="sleep.html">Open Sleep Tracker</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <div id="confirmationDialog" class="confirmation-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h3 id="dialogTitle">Confirm Action</h3>
+            <p id="dialogMessage">Are you sure?</p>
+            <div class="dialog-buttons">
+                <button class="btn btn-primary" id="confirmBtn">Confirm</button>
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

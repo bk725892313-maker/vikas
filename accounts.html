@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accounts - FitTrack Pro (Admin)</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .accounts-table { width:100%; border-collapse:collapse; margin-top:1rem }
+    .accounts-table th, .accounts-table td { padding:0.6rem; border:1px solid #e8eefc; text-align:left }
+    .accounts-actions { display:flex; gap:0.5rem }
+    .danger { background:#e74c3c; color:#fff }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo-link"><img src="assets/logo.svg" alt="FitTrack Pro" class="nav-logo" /></a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="accounts.html">Accounts</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h2>Stored Accounts (localStorage)</h2>
+      <p style="color:#b03;">Warning: passwords are stored in plain text in localStorage for this demo. Do not use real credentials.</p>
+
+      <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.8rem;">
+        <button class="btn btn-primary" id="refreshBtn">Refresh</button>
+        <button class="btn btn-secondary" id="exportBtn">Export JSON</button>
+        <button class="btn danger" id="clearBtn">Clear All Accounts</button>
+      </div>
+
+      <div id="accountsContainer"></div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+  <div id="confirmationDialog" class="confirmation-dialog" style="display:none;">
+    <div class="dialog-content">
+      <h3 id="dialogTitle">Confirm</h3>
+      <p id="dialogMessage">Are you sure?</p>
+      <div class="dialog-buttons">
+        <button class="btn btn-primary" id="confirmBtn">Confirm</button>
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function loadUsers() {
+      try {
+        return JSON.parse(localStorage.getItem('users') || '{}');
+      } catch(e) { return {}; }
+    }
+
+    function render() {
+      const users = loadUsers();
+      const container = document.getElementById('accountsContainer');
+      const keys = Object.keys(users);
+      if (!keys.length) {
+        container.innerHTML = '<p>No accounts stored in localStorage.</p>';
+        return;
+      }
+
+      let html = '<table class="accounts-table"><thead><tr><th>Username</th><th>Password</th><th>Actions</th></tr></thead><tbody>';
+      keys.forEach(u => {
+        const pwd = users[u] && users[u].password ? users[u].password : '';
+        html += `<tr><td>${u}</td><td><code id="pwd_${encodeURIComponent(u)}">${pwd}</code></td><td><div class="accounts-actions"><button class="btn" data-user="${u}" data-action="copy">Copy</button><button class="btn btn-secondary" data-user="${u}" data-action="delete">Delete</button></div></td></tr>`;
+      });
+      html += '</tbody></table>';
+      container.innerHTML = html;
+
+      // add listeners
+      container.querySelectorAll('button[data-action]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const user = btn.dataset.user;
+          const action = btn.dataset.action;
+          if (action === 'copy') {
+            const text = loadUsers()[user].password || '';
+            navigator.clipboard?.writeText(text).then(() => {
+              alert('Password copied to clipboard');
+            }).catch(()=>{ alert('Copy not supported in this browser'); });
+          } else if (action === 'delete') {
+            if (!confirm(`Delete user '${user}'?`)) return;
+            const u = loadUsers(); delete u[user]; localStorage.setItem('users', JSON.stringify(u)); render();
+          }
+        });
+      });
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', render);
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const users = loadUsers();
+      const blob = new Blob([JSON.stringify(users, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'users.json'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      if (!confirm('Clear ALL stored accounts? This cannot be undone.')) return;
+      localStorage.removeItem('users'); render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

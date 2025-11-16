@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitTrack Pro</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="robots" content="noindex">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Layout */
+    .main-flex {
+      display: flex;
+      gap: 30px;
+      padding: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Left Section */
+    .left-section {
+      max-width: 450px;
+      flex: 1;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, #667eea 0%, #9f7aea 50%, #6b46c1 100%);
+      color: #fff;
+      padding: 40px 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .hero-banner h2 {
+      font-size: 40px;
+      margin: 10px 0;
+      font-weight: 700;
+    }
+
+    .hero-banner p {
+      opacity: 0.9;
+    }
+
+    .hero-logo {
+      width: 110px;
+      margin-bottom: 10px;
+    }
+
+    /* Main Card */
+    .card {
+      padding: 18px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+
+    /* Right Section – Video */
+    .right-section {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-video iframe {
+      width: 100%;
+      height: 350px;
+      border-radius: 14px;
+      border: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .hero-banner h2 { font-size: 28px; }
+      .hero-video iframe { height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" style="background:#4C1D95; padding:14px 20px; border-bottom:0; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <img src="assets/logo.svg" style="width:120px;" alt="FitTrack Pro Logo">
+
+      <ul style="display:flex; gap:20px; list-style:none;">
+        <li><a href="index.html" style="text-decoration:none; font-weight:600; color:white;">Home</a></li>
+        <li><a href="dashboard.html" style="text-decoration:none; font-weight:600; color:white;">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Flex Layout -->
+  <div class="main-flex">
+
+    <!-- LEFT SIDE -->
+    <div class="left-section">
+
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <img src="assets/logo.svg" class="hero-logo" alt="FitTrack Logo">
+        <h2 id="heroGreeting">Welcome!</h2>
+        <p id="heroTime">—</p>
+      </div>
+
+      <!-- Card -->
+      <div class="card">
+        <h1 style="text-align:center;">Welcome to FitTrack Pro</h1>
+        <p style="text-align:center;">
+          Your personal health & fitness companion — track calories, activities,
+          water and sleep.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+      <div class="hero-video">
+        <iframe 
+          src="https://www.youtube.com/embed/9fEGbYbJEtI?autoplay=1&mute=1&controls=1&loop=1&playlist=9fEGbYbJEtI"
+          title="Intro Video"
+          allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    (function () {
+      function updateHero() {
+        let now = new Date();
+        let hour = now.getHours();
+        let greeting = 'Welcome!';
+
+        if (hour >= 5 && hour < 12) greeting = 'Good Morning!';
+        else if (hour >= 12 && hour < 17) greeting = 'Good Afternoon!';
+        else greeting = 'Good Evening!';
+
+        let name = localStorage.getItem('userName');
+        if (name) greeting += ' ' + name;
+
+        let day = now.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
+        let time = now.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        document.getElementById('heroGreeting').textContent = greeting;
+        document.getElementById('heroTime').textContent = day + ' - ' + time;
+      }
+
+      updateHero();
+      setInterval(updateHero, 60000);
+    })();
+  </script>
+
+</body>
+</html>

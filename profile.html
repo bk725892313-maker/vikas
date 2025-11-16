@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Profile - FitTrack Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-link"><img src="assets/logo.svg" alt="FitTrack Pro" class="nav-logo" /></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="bmi.html">BMI Calculator</a></li>
+                <li><a href="calorie.html">Calorie Tracker</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="activity.html">Activity Log</a></li>
+                <li><a href="sleep.html">Sleep Tracker</a></li>
+                <li><button class="btn btn-secondary" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="profile" class="profile-section">
+            <div class="card">
+                <h2>User Profile</h2>
+
+                <div id="profileDisplay" class="card" style="margin-bottom:1rem; display:none; text-align:left;">
+                    <h3>Your saved details</h3>
+                    <p><strong>Name:</strong> <span id="displayName"></span></p>
+                    <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+                    <div style="margin-top:8px;"><button id="editProfileBtn" class="btn btn-primary">Edit Profile</button></div>
+                </div>
+
+                <form id="profileForm" class="form">
+                    <div class="form-group">
+                        <label for="userName">Your Name:</label>
+                        <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
+                        <span class="error-message" id="userNameError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" placeholder="Enter your email" required>
+                        <span class="error-message" id="userEmailError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="profileSubmitBtn">Save Profile</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <div id="confirmationDialog" class="confirmation-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h3 id="dialogTitle">Confirm Action</h3>
+            <p id="dialogMessage">Are you sure?</p>
+            <div class="dialog-buttons">
+                <button class="btn btn-primary" id="confirmBtn">Confirm</button>
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
